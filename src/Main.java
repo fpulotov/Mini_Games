@@ -54,25 +54,32 @@ public class Main implements ActionListener {
 
     private void initializeGuessNumberGame(JPanel panel) {
         panel.setLayout(new BorderLayout());
+        panel.setBackground(Color.decode("#f0f0f0"));
 
         JPanel titlePanel = new JPanel();
         titleLabel = new JLabel("Угадай число");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         titlePanel.add(titleLabel);
 
         JPanel infoPanel = new JPanel(new GridLayout(4, 1));
         rangeLabel = new JLabel();
+        rangeLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         attemptsLabel = new JLabel();
+        attemptsLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         resultLabel = new JLabel();
+        resultLabel.setFont(new Font("Arial", Font.BOLD, 20));
         infoPanel.add(rangeLabel);
         infoPanel.add(attemptsLabel);
         infoPanel.add(resultLabel);
 
         JPanel inputPanel = new JPanel(new FlowLayout());
         JLabel inputLabel = new JLabel("Ваше число:");
+        inputLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         inputField = new JTextField(10);
+        inputField.setFont(new Font("Arial", Font.PLAIN, 18));
         submitButton = new JButton("Проверить");
         submitButton.addActionListener(this);
+        submitButton.setFont(new Font("Arial", Font.BOLD, 18));
         inputPanel.add(inputLabel);
         inputPanel.add(inputField);
         inputPanel.add(submitButton);
@@ -80,10 +87,12 @@ public class Main implements ActionListener {
         JPanel restartPanel = new JPanel(new FlowLayout());
         restartGuessNumberButton = new JButton("Рестарт");
         restartGuessNumberButton.addActionListener(this);
+        restartGuessNumberButton.setFont(new Font("Arial", Font.BOLD, 18));
         restartPanel.add(restartGuessNumberButton);
 
         JPanel contentPanel = new JPanel(new BorderLayout());
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        contentPanel.setBackground(Color.decode("#f0f0f0"));
         contentPanel.add(titlePanel, BorderLayout.NORTH);
         contentPanel.add(infoPanel, BorderLayout.CENTER);
         contentPanel.add(inputPanel, BorderLayout.SOUTH);
@@ -137,20 +146,26 @@ public class Main implements ActionListener {
 
             if (guess == secretNumber) {
                 resultLabel.setText("Вы угадали число!");
+                resultLabel.setForeground(Color.GREEN);
                 submitButton.setEnabled(false);
             } else if (attempts >= maxAttempts) {
                 resultLabel.setText("Вы не угадали число. Загаданное число: " + secretNumber);
+            resultLabel.setForeground(Color.YELLOW);
                 submitButton.setEnabled(false);
             } else if (guess < secretNumber) {
                 resultLabel.setText("Загаданное число больше");
+                resultLabel.setForeground(Color.BLUE);
             } else {
                 resultLabel.setText("Загаданное число меньше");
+                resultLabel.setForeground(Color.RED);
             }
         }
     }
 
     private void restartGuessNumberGame() {
         submitButton.setEnabled(true);
+        resultLabel.setText("");
+        resultLabel.setForeground(Color.BLACK);
         initializeGuessNumberSettings(1);
     }
 
@@ -159,7 +174,7 @@ public class Main implements ActionListener {
 
         JPanel titlePanel = new JPanel();
         titleLabel = new JLabel("Крестики-нолики");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         titlePanel.add(titleLabel);
 
         JPanel gamePanel = new JPanel(new GridLayout(3, 3));
@@ -176,6 +191,7 @@ public class Main implements ActionListener {
         JPanel restartPanel = new JPanel(new FlowLayout());
         restartTicTacToeButton = new JButton("Рестарт");
         restartTicTacToeButton.addActionListener(this);
+        restartTicTacToeButton.setFont(new Font("Arial", Font.BOLD, 18));
         restartPanel.add(restartTicTacToeButton);
 
         JPanel contentPanel = new JPanel(new BorderLayout());
@@ -233,7 +249,6 @@ public class Main implements ActionListener {
     }
 
     private boolean checkWin(String player) {
-
         for (int row = 0; row < 3; row++) {
             if (buttons[row][0].getText().equals(player) &&
                     buttons[row][1].getText().equals(player) &&
