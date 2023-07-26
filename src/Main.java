@@ -105,7 +105,7 @@ public class Main implements ActionListener {
         switch (level) {
             case 1:
                 minRange = 1;
-                maxRange = 50;
+                maxRange = 100;
                 break;
             case 2:
                 minRange = 1;
@@ -150,7 +150,7 @@ public class Main implements ActionListener {
                 submitButton.setEnabled(false);
             } else if (attempts >= maxAttempts) {
                 resultLabel.setText("Вы не угадали число. Загаданное число: " + secretNumber);
-            resultLabel.setForeground(Color.YELLOW);
+                resultLabel.setForeground(Color.YELLOW);
                 submitButton.setEnabled(false);
             } else if (guess < secretNumber) {
                 resultLabel.setText("Загаданное число больше");
@@ -275,7 +275,6 @@ public class Main implements ActionListener {
                 buttons[2][0].getText().equals(player)) {
             return true;
         }
-
         return false;
     }
 
@@ -309,7 +308,6 @@ public class Main implements ActionListener {
             restartTicTacToeGame();
         }
     }
-
     public static void main(String[] args) {
         Main game = new Main();
         game.start();
